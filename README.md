@@ -1,11 +1,11 @@
-#Atarialttrl
+# Atarialttrl
 
 A python library to control an atari2600 using a raspberry pi.
 
 
 
-## FAQ:
+### FAQ:
 
 * Why?
 
-** Because I want to.
+*. Because I want to.
