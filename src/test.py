@@ -1,7 +1,5 @@
 import altctrl
 import time
-
-
 "some fuckin test scripts to let me easily tap a button and such"
 
 
@@ -9,8 +7,8 @@ import time
 the pins im using
 the grounds are all connected so thats nice
 UP DOWN LEFT RIGHT FIRE
-joy1 is 7,11,13,15,12
-joy2 is 31,33,35,37,40
+joy2 is 7,11,13,15,12
+joy1 is 31,33,35,37,40
 '''
 
 fire = 40
