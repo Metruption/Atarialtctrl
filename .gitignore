@@ -1,2 +1,3 @@
 venv
 *.pyc
+src/evs; file with a list of events to listen to
