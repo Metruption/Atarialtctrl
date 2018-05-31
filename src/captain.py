@@ -18,6 +18,7 @@ class JoyCaptain:
     def __init__(self, j1p, j2p):
         self.ready = False
         self.map = {}
+        self.analogs = [] #a list of all buttons that ahve been identified as analog
         #begin NOT REAL CODE
         #i want like a fucking fuck what do i want
         #end NOT REAL CODE
@@ -43,7 +44,19 @@ if we are keeping this input and its analog we convert it to "simple analog" whe
             
 #todo(aaron) unfuck this formatting
             """
-            pass #todo write this
+            if input_["id"] not in analogs and input_["status"]>1:
+                self.analogs.append(input_["id"])
+            if input in analogs:
+                dist = abs(input_["status"]-127) #MAGIC NUMBER i assume 127 is the neutral position for every analog input ever xd
+                if dist < 20: #MAGIC NUMBER this is the dead zone where we ignore analoog inputs
+                    input_["status"] = 0
+                elif input_["status"] > 127:
+                    input_["status"] = 1
+                elif input_["status"] < 127:
+                    input_["status"] = -1
+            return input_["status"]
+        
+                
 
         if self.ready:
             pass #write this after you do not ready
