@@ -40,7 +40,7 @@ class Joystick:
         GPIO.setup(left, GPIO.OUT)
         GPIO.setup(right, GPIO.OUT)
 
-        GPIO.output(fire, GPIO.LOW)
+        GPIO.output(fire, GPIO.HIGH)
         GPIO.output([up,down,left,right], GPIO.HIGH) #these are all high when the joystick is in neutral position
 
 
@@ -49,17 +49,21 @@ class Joystick:
         and then something bad happens then it's your fault
         not because I say so, but because of the GPL license that provides no warranty
         '''
-    def set_up(state):
+    def set_up(self, state):
         GPIO.output(up,state)
 
-    def set_down(state):
+    def set_down(self, state):
         GPIO.output(down,state)
 
-    def set_left(state):
+    def set_left(self, state):
         GPIO.output(left,state)
 
-    def set_right(state):
+    def set_right(self, state):
         GPIO.output(right,state)
 
-    def set_right(state):
+    def set_fire(self, state):
         GPIO.output(right,state)
+
+
+    def FAL(self): #im so sorry but this is the laziest way forme to code this and i just want it to work
+        return [self.set_up,self.set_down,self.set_left,self.set_right,self.set_fire]
