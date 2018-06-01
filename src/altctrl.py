@@ -15,7 +15,7 @@ Atarialttrl: python code to control an atari2600 car using an rpi
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-import Rpi.GPIO as GPIO
+import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
 
 class Joystick:

@@ -1,8 +1,6 @@
 '''
-this shit is gonnA BE LIKE MAINNN
-'''
+1;5003;0cthis shit is gonnA BE LIKE MAINNN
 
-'''
 anything from `ls /dev/input | grep event` should get wachet
 '''
 from evdev import InputDevice
@@ -17,7 +15,7 @@ class JoyCaptain:
     #and then weset the pin to 1 when we relese the pin so the atari thinks we released the button
     #fucking jokes im not gonna use them
     #what the fuck this is so cool
-    def __init__(self, j1p, j2p):
+    def __init__(self):
         self.ready = False
         self.map_ = {}
         self.analogs = [] #a list of all buttons that ahve been identified as analog
@@ -27,7 +25,7 @@ class JoyCaptain:
         #i want like a fucking fuck what do i
         #im sorry 
         joys = [Joystick(31,33,35,37,40),Joystick(7,11,13,15,12)]
-        self.unset = joys[0].FAL()+joys[1].FAL
+        self.unset = joys[0].FAL()+joys[1].FAL()
         
     def stupid(self, shit): #xd
         if shit == 0:
@@ -35,7 +33,7 @@ class JoyCaptain:
         if shit == 1 or shit == -1:
             return 0
 
-    def handle_input(self, line)
+    def handle_input(self, line):
         #handles input from main and makes the shit happen
         def split(line): #NOTE TO FUCKING SELF: TYPE 03 INPUT EVENTS ARE ANALOG AND TYPE 01 ARE DIGITAL, IGNORE ALL OTHERS AND IM STUPID FOR WRITING CODE TO DETECT ANALOG INPUTS BASED ON THEIR VALUE FUCK ME if the code is slow optimize it by changing how it filters analog input
             """
@@ -55,7 +53,7 @@ p                "button_id" is an ugly ass string
 #                type_ = bits[3] #UNCOMMENT THIS LINE WHEN U DO THE ANALOG OPTIMIZATION
                 return {"id":val,"status":nomen}
 
-        def filter(input_):
+        def filter_(input_):
             """
             PRECONDITIONS: @param input) is a split line
             POSTCONDITIONS: doesnt fuck with digital inputs
@@ -80,9 +78,9 @@ if we are keeping this input and its analog we convert it to "simple analog" whe
             
 #todo(aaron) unfuck this formatting
             """
-            if input_["id"] not in analogs and input_["status"]>1:
+            if input_["id"] not in self.analogs and input_["status"]>1:
                 self.analogs.append(input_["id"])
-            if input in analogs:
+            if input in self.analogs:
                 dist = abs(input_["status"]-127) #MAGIC NUMBER i assume 127 is the neutral position for every analog input ever xd
                 if dist < 20: #MAGIC NUMBER this is the dead zone where we ignore analoog inputs
                     input_["status"] = 0
@@ -99,7 +97,7 @@ if we are keeping this input and its analog we convert it to "simple analog" whe
 
         if self.ready:
             if line["id"] in self.map_.keys():
-                self.map_['id'](self.stupid[line["status"])
+                self.map_['id'](self.stupid[line["status"]])
         if not self.ready:
             #we want to split the line into 3 parts and also filter it
             line = split(line)
@@ -114,8 +112,10 @@ if we are keeping this input and its analog we convert it to "simple analog" whe
 
             
 def main():
-    f = open(evs)
-    devices = (line for line in f)
+    f = open("evs")
+    devices = ["/dev/input/"+line for line in f.read().split("\n")][:-1]
+    print(devices)
+    print("fucking debug my ass")
     devices = map(InputDevice, devices)
     devices = {dev.fd: dev for dev in devices}
 
@@ -131,6 +131,9 @@ like fucking
     cap = JoyCaptain() #fuck i forgot about main existing, i'm sorry that i hardcoded the pins in there
     while True:
         r, w, x = select(devices, [], [])
-            for fd in r:
-                for event in devices[fd].read():
-                    cap.handle_input(str(fd)+","+str(event))
+        for fd in r:
+            for event in devices[fd].read():
+                cap.handle_input(str(fd)+","+str(event))
+
+if __name__ == "__main__":
+    main()
