@@ -37,7 +37,7 @@ class JoyCaptain:
 
     def handle_input(self, line)
         #handles input from main and makes the shit happen
-        def split(line):
+        def split(line): #NOTE TO FUCKING SELF: TYPE 03 INPUT EVENTS ARE ANALOG AND TYPE 01 ARE DIGITAL, IGNORE ALL OTHERS AND IM STUPID FOR WRITING CODE TO DETECT ANALOG INPUTS BASED ON THEIR VALUE FUCK ME if the code is slow optimize it by changing how it filters analog input
             """
             PRECONDITIONS: @param line is an event in text form
             POSTCONDITIONS: ret
@@ -46,8 +46,16 @@ urns a dict with a few key bits
 p                "button_id" is an ugly ass string
                 "button_status" is the number that indicates wahts gonig on
           """
-            pass #todo weite this
-        def filter_(input_):
+            bits = line.strip().split(',')
+            if "type 00" in bits or "type 04" in bits:
+                return {"id":None,"status":None}
+            else:#YEAH IT FUCKING LIKE doesnt needd to exist but its for code readability in this wasteland
+                val =  bits[-1].split(" ")[-1]    
+                nomen = bits[0]+bits[2]
+#                type_ = bits[3] #UNCOMMENT THIS LINE WHEN U DO THE ANALOG OPTIMIZATION
+                return {"id":val,"status":nomen}
+
+        def filter(input_):
             """
             PRECONDITIONS: @param input) is a split line
             POSTCONDITIONS: doesnt fuck with digital inputs
@@ -65,7 +73,8 @@ p                "button_id" is an ugly ass string
 
 
 
-            so if we are ignoring this input return None
+            so if we are ignoring this input return None NO ACTUALLY
+WHAT WE DO IS WE JUST FUCKING PRETEND THOSE ARE ALL ZERO FUCKING DUHH
 if we are keeping this input and its analog we convert it to "simple analog" where it's 1, 0, or -1 where 1 is "up OR left", 0 is in dead zone, -1 is "down or right"
             some digital dpads use this already so it makes sense
             
@@ -119,4 +128,9 @@ the shits
 like fucking
     '''
 
-    joy
+    cap = JoyCaptain() #fuck i forgot about main existing, i'm sorry that i hardcoded the pins in there
+    while True:
+        r, w, x = select(devices, [], [])
+            for fd in r:
+                for event in devices[fd].read():
+                    cap.handle_input(str(fd)+","+str(event))
