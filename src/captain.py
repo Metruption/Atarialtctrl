@@ -85,6 +85,8 @@ if we are keeping this input and its analog we convert it to "simple analog" whe
             if input_["id"] not in self.analogs and input_["status"]>1:
                 self.analogs.append(input_["id"])
             if input in self.analogs:
+                print("sorry no analogs today ahahah")
+                return None
                 dist = abs(input_["status"]-127) #MAGIC NUMBER i assume 127 is the neutral position for every analog input ever xd
                 if dist < 20: #MAGIC NUMBER this is the dead zone where we ignore analoog inputs
                     input_["status"] = 0
@@ -110,12 +112,12 @@ if we are keeping this input and its analog we convert it to "simple analog" whe
         if not self.ready:
             #we want to split the line into 3 parts and also filter 
             if line["id"] not in self.map_.keys():
-                print("bound one")
+                print("bound one",len(self.unset))
                 self.map_[line["id"]] = self.unset[0]
                 self.unset = self.unset[1:]
                 if len(self.unset) == 0:
                     print("ITS FUCKING READY NOW!!")
-                    print(map_)
+                    print(self.map_)
                     self.ready = True
 
 
