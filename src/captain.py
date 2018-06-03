@@ -1,5 +1,5 @@
 '''
-1;5003;0cthis shit is gonnA BE LIKE MAINNN
+1;5004;0c1;5003;0cthis shit is gonnA BE LIKE MAINNN
 
 anything from `ls /dev/input | grep event` should get wachet
 '''
@@ -28,6 +28,7 @@ class JoyCaptain:
         self.unset = joys[0].FAL()+joys[1].FAL()
         
     def stupid(self, shit): #xd
+        shit = int(shit)#fuck 
         if shit == 0:
             return 1
         if shit == 1 or shit == -1:
@@ -51,7 +52,7 @@ p                "button_id" is an ugly ass string
                 val =  bits[-1].split(" ")[-1]    
                 nomen = bits[0]+bits[2]
 #                type_ = bits[3] #UNCOMMENT THIS LINE WHEN U DO THE ANALOG OPTIMIZATION
-                return {"id":val,"status":nomen}
+                return {"id":nomen,"status":int(val)}
 
         def filter_(input_):
             """
@@ -78,6 +79,9 @@ if we are keeping this input and its analog we convert it to "simple analog" whe
             
 #todo(aaron) unfuck this formatting
             """
+            if input_["status"]>300:
+                print(input_["status"],"FUCKING SORRY")
+                return "FUCK" #uncodumented bullshit sorry
             if input_["id"] not in self.analogs and input_["status"]>1:
                 self.analogs.append(input_["id"])
             if input in self.analogs:
@@ -94,18 +98,24 @@ if we are keeping this input and its analog we convert it to "simple analog" whe
                 input_["status"] = 1
             return input_
                 
-
+        line = split(line)
+        line = filter_(line)
+        if line == "FUCK":
+            print("FUCKED AN INPUT")
+            return 1 #fuck this crappy snes knockoff
+        print("parsing this line",line)
         if self.ready:
             if line["id"] in self.map_.keys():
-                self.map_['id'](self.stupid[line["status"]])
+                self.map_[line['id']](int(self.stupid(line["status"])))
         if not self.ready:
-            #we want to split the line into 3 parts and also filter it
-            line = split(line)
-            line = filter_(line)
+            #we want to split the line into 3 parts and also filter 
             if line["id"] not in self.map_.keys():
+                print("bound one")
                 self.map_[line["id"]] = self.unset[0]
                 self.unset = self.unset[1:]
                 if len(self.unset) == 0:
+                    print("ITS FUCKING READY NOW!!")
+                    print(map_)
                     self.ready = True
 
 

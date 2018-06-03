@@ -50,19 +50,19 @@ class Joystick:
         not because I say so, but because of the GPL license that provides no warranty
         '''
     def set_up(self, state):
-        GPIO.output(up,state)
+        GPIO.output(self.up,state)
 
     def set_down(self, state):
-        GPIO.output(down,state)
+        GPIO.output(self.down,state)
 
     def set_left(self, state):
-        GPIO.output(left,state)
+        GPIO.output(self.left,state)
 
     def set_right(self, state):
-        GPIO.output(right,state)
+        GPIO.output(self.right,state)
 
     def set_fire(self, state):
-        GPIO.output(right,state)
+        GPIO.output(self.fire,state)
 
 
     def FAL(self): #im so sorry but this is the laziest way forme to code this and i just want it to work
