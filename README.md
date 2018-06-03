@@ -17,3 +17,13 @@ Because I want to.
 * `evdev` python package
 
 * `RPi.GPIO` python package
+
+### How to use:
+
+run `run.sh`
+
+Press buttons on your controllers to bind in this order to the left joystick on the atari:
+
+DOWN LEFT RIGHT FIRE UP
+
+Repeat that order for the second joystick.
