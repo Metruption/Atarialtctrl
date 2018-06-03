@@ -48,9 +48,11 @@ urns a dict with a few key bits
 p                "button_id" is an ugly ass string
                 "button_status" is the number that indicates wahts gonig on
           """
+            if "code 00" in line:
+                return "FUCK"
             bits = line.strip().split(',')#bits meaning parts of the line, not actual bits
-            if "type 00" in bits or "type 04" in bits or "code 00" in bits:
-                return {"id":None,"status":None}
+            if "type 00" in bits or "type 04" in bits:
+                return None
             else:#YEAH IT FUCKING LIKE doesnt needd to exist but its for code readability in this wasteland
                 val =  bits[-1].split(" ")[-1]
                 nomen = bits[0]+bits[2]
@@ -70,6 +72,8 @@ if we are keeping this input and its analog we convert it to "simple analog" whe
 
 #todo(aaron) unfuck this formatting
             """
+            if input_ == "FUCK":
+                return input_
             if input_["status"]>300:
                 print(input_["status"],"FUCKING SORRY")
                 return "FUCK" #uncodumented bullshit sorry
