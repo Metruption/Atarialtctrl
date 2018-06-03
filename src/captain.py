@@ -24,7 +24,7 @@ class JoyCaptain:
         self.unset = joys[0].FAL()+joys[1].FAL()
 
     def stupid(self, shit): #xd
-    '''
+        '''
     so bascically this converts button status (1 for pressed 0 for not pressed)
     into gpio signals that the atari can see
     as it turns out we want to swap them
@@ -78,11 +78,10 @@ if we are keeping this input and its analog we convert it to "simple analog" whe
                 #of like fifty thousand and then the program crashes
                 #or worse, it keeps running nd thinks we should bind that to a button
 
-            if input_["id"] not in self.analogs and input_["status"]>1:
-                self.analogs.append(input_["id"])
-            if input["type"] == 3: #3 seems to mean analog
-                print("sorry no analogs today ahahah")
-                return None
+
+            if input_["type"] == 3: #3 seems to mean analog
+ #               print("sorry no analogs today ahahah")
+#                return None
                 dist = abs(input_["status"]-127) #MAGIC NUMBER i assume 127 is the neutral position for every analog input ever xd
                 if dist < 20: #MAGIC NUMBER this is the dead zone where we ignore analoog inputs
                     input_["status"] = 0
