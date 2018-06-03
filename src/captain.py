@@ -75,7 +75,7 @@ if we are keeping this input and its analog we convert it to "simple analog" whe
             if input_ == "FUCK":
                 return input_
             if input_["status"]>300:
-                print(input_["status"],"FUCKING SORRY")
+                print(input_["status"],"FUCKING SORRY not sorry")
                 return "FUCK" #uncodumented bullshit sorry
                 #ok some documentation about when we fuck inputs:
                 #for some reason one of my controllers gives us an input status
@@ -84,8 +84,8 @@ if we are keeping this input and its analog we convert it to "simple analog" whe
 
 
             if input_["type"] == 3: #3 seems to mean analog
- #               print("sorry no analogs today ahahah")
-#                return None
+                print("sorry no analogs today ahahah")
+                return "FUCK"
                 dist = abs(input_["status"]-127) #MAGIC NUMBER i assume 127 is the neutral position for every analog input ever xd
                 if dist < 20: #MAGIC NUMBER this is the dead zone where we ignore analoog inputs
                     input_["status"] = 0
