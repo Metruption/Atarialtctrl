@@ -49,7 +49,7 @@ p                "button_id" is an ugly ass string
                 "button_status" is the number that indicates wahts gonig on
           """
             bits = line.strip().split(',')#bits meaning parts of the line, not actual bits
-            if "type 00" in bits or "type 04" in bits:
+            if "type 00" in bits or "type 04" in bits or "code 00" in bits:
                 return {"id":None,"status":None}
             else:#YEAH IT FUCKING LIKE doesnt needd to exist but its for code readability in this wasteland
                 val =  bits[-1].split(" ")[-1]
